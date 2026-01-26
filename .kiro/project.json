@@ -1,0 +1,13 @@
+{
+  "project": "Multilingual Mandi",
+  "vision": "Bridging India's linguistic gaps in local trade through real-time AI agents.",
+  "agent_config": {
+    "role": "Mandi Facilitator",
+    "capabilities": ["Translation", "Price Discovery", "Negotiation Support"],
+    "languages": ["Hindi", "Bengali", "Marathi", "Telugu", "Tamil", "Gujarati", "Urdu", "Kannada", "Odia", "Malayalam", "Punjabi", "Assamese", "Maithili", "Santhali", "Kashmiri", "Nepali", "Sindhi", "Konkani", "Dogri", "Manipuri", "Sanskrit", "Bodo", "English"]
+  },
+  "prompts": {
+    "price_discovery": "Act as a Mandi price analyst. Provide current market rates for crops across India based on APMC data.",
+    "negotiation": "Translate between the buyer and seller in real-time, maintaining the tone of a respectful trade negotiation while ensuring clarity on numbers and quality."
+  }
+}

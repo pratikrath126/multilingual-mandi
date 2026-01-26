@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Mandi | Bharat's Smart Trade Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
+
+        :root {
+            --primary: #FF9933; /* Saffron */
+            --secondary: #128807; /* Green */
+            --accent: #000080; /* Navy Blue */
+            --glass: rgba(255, 255, 255, 0.9);
+            --bg: #f3f4f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+            background: linear-gradient(135deg, #FF993310 0%, #ffffff 50%, #12880710 100%);
+            color: #1f2937;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 30px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .logo { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; }
+        .tagline { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+
+        .price-ticker {
+            background: #fff;
+            padding: 10px;
+            font-size: 12px;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-wrap {
+            display: inline-block;
+            animation: ticker 20s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .nav-btn.active { color: var(--primary); }
+        .nav-btn i { font-size: 20px; margin-bottom: 4px; }
+
+        .content { padding: 20px; min-height: 400px; }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 { font-size: 16px; margin-bottom: 10px; color: var(--accent); }
+
+        .price-list { list-style: none; }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #fafafa;
+        }
+
+        .status-up { color: var(--secondary); font-weight: 600; }
+        .status-down { color: #dc2626; font-weight: 600; }
+
+        .voice-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .mic-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
+            transition: transform 0.2s, background 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .mic-btn:active { transform: scale(0.9); background: var(--secondary); }
+        .mic-btn.recording { animation: pulse 1.5s infinite; background: #dc2626; }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        .transcription-box {
+            width: 100%;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 15px;
+            font-style: italic;
+            color: #4b5563;
+            text-align: center;
+        }
+
+        .negotiation-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+        }
+
+        .bubble.seller { background: #e5e7eb; align-self: flex-start; border-bottom-left-radius: 4px; }
+        .bubble.buyer { background: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+
+        .translation-tag {
+            font-size: 10px;
+            display: block;
+            margin-top: 5px;
+            opacity: 0.8;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 2px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 10px;
+            color: #9ca3af;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><i class="fas fa-tractor"></i> MULTILINGUAL MANDI</div>
+            <p class="tagline">Bridging Trade, Beyond Language</p>
+        </header>
+
+        <div class="price-ticker">
+            <div class="ticker-wrap">
+                🌾 Wheat (Nagpur): ₹2,450 (+₹20) | 🍅 Tomato (Azadpur): ₹1,800 (-₹50) | 🧅 Onion (Nashik): ₹2,100 (+₹10) | 🥔 Potato (Agra): ₹1,250 (+₹5)
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <button class="nav-btn active"><i class="fas fa-chart-line"></i>Prices</button>
+            <button class="nav-btn"><i class="fas fa-comments"></i>Trade</button>
+            <button class="nav-btn"><i class="fas fa-history"></i>Log</button>
+            <button class="nav-btn"><i class="fas fa-cog"></i>Settings</button>
+        </nav>
+
+        <div class="content" id="main-content">
+            <!-- Prices View -->
+            <div class="card">
+                <h3><i class="fas fa-location-dot"></i> Your Local Market: Azadpur</h3>
+                <div class="price-list">
+                    <div class="price-item">
+                        <span>Wheat (Kanak)</span>
+                        <span class="status-up">₹2,450 / Quintal</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Basmati Rice</span>
+                        <span class="status-down">₹4,200 / Quintal</span>
+                    </div>
+                    <div class="price-item">
+                        <span>Sugar Cane</span>
+                        <span>₹315 / Quintal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Interface Section -->
+            <div class="voice-section">
+                <button class="mic-btn" id="mic-trigger"><i class="fas fa-microphone"></i></button>
+                <p style="margin-bottom: 10px; font-weight: 600;">Speak in your language</p>
+                <div class="transcription-box" id="transcription">
+                    "नमस्ते, मुझे आज गेहूं का भाव बताइए..."
+                </div>
+            </div>
+
+            <!-- Negotiation Preview -->
+            <div class="card" style="margin-top: 30px;">
+                <h3><i class="fas fa-handshake"></i> Live Negotiation Support</h3>
+                <div class="negotiation-chat">
+                    <div class="bubble seller">
+                        Namaste! Hamara mal sabse accha hai, ₹2500 kam se kam.
+                        <span class="translation-tag">EN: Namaste! Our produce is the best, ₹2500 minimum.</span>
+                    </div>
+                    <div class="bubble buyer">
+                        Too expensive! I can offer ₹2200 for bulk.
+                        <span class="translation-tag">HI: बहुत महंगा है! मैं थोक के लिए ₹2200 दे सकता हूँ।</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            Powered by Kiro AI Agents • Visions of Bharat 2026
+        </div>
+    </div>
+
+    <script>
+        const mic = document.getElementById('mic-trigger');
+        const transcription = document.getElementById('transcription');
+        let isRecording = false;
+
+        mic.addEventListener('click', () => {
+            isRecording = !isRecording;
+            if (isRecording) {
+                mic.classList.add('recording');
+                transcription.innerText = "Listening to your request...";
+                setTimeout(() => {
+                    if(isRecording) {
+                        transcription.innerText = "Processing your Hindi query...";
+                    }
+                }, 1500);
+            } else {
+                mic.classList.remove('recording');
+                transcription.innerText = "आज का गेहूं का सबसे अच्छा भाव ₹2450 है। (Today's best wheat price is ₹2450)";
+            }
+        });
+    </script>
+</body>
+</html>
