@@ -9,273 +9,373 @@
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
 
         :root {
-            --primary: #FF9933; /* Saffron */
-            --secondary: #128807; /* Green */
-            --accent: #000080; /* Navy Blue */
-            --glass: rgba(255, 255, 255, 0.9);
-            --bg: #f3f4f6;
+            --primary: #FF9933;
+            --secondary: #128807;
+            --accent: #000080;
+            --bg: #f9fafb;
+            --card-bg: #ffffff;
+            --text-main: #111827;
+            --text-sub: #6b7280;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
-            background: linear-gradient(135deg, #FF993310 0%, #ffffff 50%, #12880710 100%);
-            color: #1f2937;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 450px;
             min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255,255,255,0.3);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            padding: 30px 20px;
-            color: white;
-            text-align: center;
-        }
-
-        .logo { font-weight: 800; font-size: 24px; letter-spacing: -0.5px; }
-        .tagline { font-size: 14px; opacity: 0.9; margin-top: 5px; }
-
-        .price-ticker {
-            background: #fff;
-            padding: 10px;
-            font-size: 12px;
-            border-bottom: 1px solid #eee;
-            white-space: nowrap;
-            overflow: hidden;
+            background: var(--bg);
             position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
         }
 
-        .ticker-wrap {
+        /* --- Header & Branding --- */
+        header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { 
+            font-weight: 800; 
+            font-size: 20px; 
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo i { color: var(--primary); }
+
+        /* --- Price Ticker --- */
+        .ticker-container {
+            background: var(--primary);
+            color: white;
+            padding: 8px 0;
+            overflow: hidden;
+        }
+
+        .ticker-content {
             display: inline-block;
-            animation: ticker 20s linear infinite;
+            white-space: nowrap;
+            animation: ticker-scroll 30s linear infinite;
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        @keyframes ticker {
+        @keyframes ticker-scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
 
-        .main-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-        }
+        /* --- Main Dashboard --- */
+        main { padding: 20px; padding-bottom: 100px; }
 
-        .nav-btn {
-            background: none;
-            border: none;
-            color: #6b7280;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 12px;
-            transition: 0.3s;
-        }
-
-        .nav-btn.active { color: var(--primary); }
-        .nav-btn i { font-size: 20px; margin-bottom: 4px; }
-
-        .content { padding: 20px; min-height: 400px; }
-
-        .card {
+        .market-status {
             background: white;
-            border-radius: 16px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #f3f4f6;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e5e7eb;
         }
 
-        .card h3 { font-size: 16px; margin-bottom: 10px; color: var(--accent); }
-
-        .price-list { list-style: none; }
-        .price-item {
+        .market-header {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #fafafa;
-        }
-
-        .status-up { color: var(--secondary); font-weight: 600; }
-        .status-down { color: #dc2626; font-weight: 600; }
-
-        .voice-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .mic-btn {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: none;
-            color: white;
-            font-size: 32px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 153, 51, 0.4);
-            transition: transform 0.2s, background 0.3s;
+            align-items: flex-start;
             margin-bottom: 15px;
         }
 
-        .mic-btn:active { transform: scale(0.9); background: var(--secondary); }
-        .mic-btn.recording { animation: pulse 1.5s infinite; background: #dc2626; }
+        .market-title h2 { font-size: 18px; margin-bottom: 4px; }
+        .market-title p { font-size: 14px; color: var(--text-sub); }
+
+        .location-badge {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .price-card {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .price-card span { display: block; font-size: 12px; color: var(--text-sub); }
+        .price-card strong { font-size: 16px; color: var(--text-main); }
+        .price-change.up { color: var(--secondary); font-size: 11px; }
+
+        /* --- AI Interaction --- */
+        .ai-action-box {
+            background: linear-gradient(135deg, #FF9933 0%, #FFB366 100%);
+            border-radius: 24px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(255, 153, 51, 0.3);
+        }
+
+        .ai-action-box h3 { font-size: 20px; margin-bottom: 8px; }
+        .ai-action-box p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+        .mic-trigger {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            border: none;
+            color: var(--primary);
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .mic-trigger.active {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+            animation: pulse 1.5s infinite;
+        }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(220, 38, 38, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(18, 136, 7, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0); }
         }
 
-        .transcription-box {
-            width: 100%;
-            background: #f9fafb;
+        .live-transcription {
+            background: rgba(255,255,255,0.2);
             border-radius: 12px;
-            padding: 15px;
-            font-style: italic;
-            color: #4b5563;
-            text-align: center;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            min-height: 40px;
+            display: none;
         }
 
-        .negotiation-chat {
+        /* --- Real-Time Chat --- */
+        .negotiation-section h3 { font-size: 16px; margin-bottom: 12px; padding-left: 5px; }
+
+        .chat-container {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .bubble {
-            max-width: 80%;
-            padding: 10px 15px;
+        .chat-bubble {
+            max-width: 85%;
+            padding: 14px;
             border-radius: 18px;
-            font-size: 14px;
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .bubble.seller { background: #e5e7eb; align-self: flex-start; border-bottom-left-radius: 4px; }
-        .bubble.buyer { background: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .translation-tag {
-            font-size: 10px;
+        .chat-bubble.vendor {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .chat-bubble.buyer {
+            background: var(--secondary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .translation-overlay {
             display: block;
-            margin-top: 5px;
-            opacity: 0.8;
+            margin-top: 8px;
+            padding-top: 8px;
             border-top: 1px solid rgba(0,0,0,0.05);
-            padding-top: 2px;
+            font-size: 12px;
+            font-style: italic;
+            opacity: 0.8;
         }
 
-        .footer-note {
-            text-align: center;
-            font-size: 10px;
-            color: #9ca3af;
-            padding: 20px;
+        .buyer .translation-overlay { border-top-color: rgba(255,255,255,0.2); }
+
+        /* --- Footer Navigation --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid #e5e7eb;
+            z-index: 100;
         }
+
+        .nav-item {
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 10px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .nav-item i { display: block; font-size: 20px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--primary); }
+
+        /* --- Functional Controls --- */
+        #speech-status {
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="phone-mockup">
         <header>
-            <div class="logo"><i class="fas fa-tractor"></i> MULTILINGUAL MANDI</div>
-            <p class="tagline">Bridging Trade, Beyond Language</p>
+            <div class="logo"><i class="fas fa-microchip"></i> MULTILINGUAL MANDI</div>
         </header>
 
-        <div class="price-ticker">
-            <div class="ticker-wrap">
-                🌾 Wheat (Nagpur): ₹2,450 (+₹20) | 🍅 Tomato (Azadpur): ₹1,800 (-₹50) | 🧅 Onion (Nashik): ₹2,100 (+₹10) | 🥔 Potato (Agra): ₹1,250 (+₹5)
+        <div class="ticker-container">
+            <div class="ticker-content">
+                🌾 WHEAT: ₹2450 (+20) | 🍅 TOMATO: ₹1800 (-50) | 🧅 ONION: ₹2100 (+10) | 🥔 POTATO: ₹1250 (+5) | 🥛 MILK: ₹54 (0) | 🌽 MAIZE: ₹1950 (+15)
             </div>
         </div>
 
-        <nav class="main-nav">
-            <button class="nav-btn active"><i class="fas fa-chart-line"></i>Prices</button>
-            <button class="nav-btn"><i class="fas fa-comments"></i>Trade</button>
-            <button class="nav-btn"><i class="fas fa-history"></i>Log</button>
-            <button class="nav-btn"><i class="fas fa-cog"></i>Settings</button>
-        </nav>
-
-        <div class="content" id="main-content">
-            <!-- Prices View -->
-            <div class="card">
-                <h3><i class="fas fa-location-dot"></i> Your Local Market: Azadpur</h3>
-                <div class="price-list">
-                    <div class="price-item">
-                        <span>Wheat (Kanak)</span>
-                        <span class="status-up">₹2,450 / Quintal</span>
+        <main>
+            <div class="market-status">
+                <div class="market-header">
+                    <div class="market-title">
+                        <h2>Azadpur Mandi</h2>
+                        <p>Latest Market Rates</p>
                     </div>
-                    <div class="price-item">
+                    <span class="location-badge"><i class="fas fa-location-arrow"></i> New Delhi</span>
+                </div>
+                <div class="price-grid">
+                    <div class="price-card">
+                        <span>Wheat (A-Grade)</span>
+                        <strong>₹2,450</strong>
+                        <div class="price-change up"><i class="fas fa-caret-up"></i> 0.8%</div>
+                    </div>
+                    <div class="price-card">
                         <span>Basmati Rice</span>
-                        <span class="status-down">₹4,200 / Quintal</span>
-                    </div>
-                    <div class="price-item">
-                        <span>Sugar Cane</span>
-                        <span>₹315 / Quintal</span>
+                        <strong>₹4,200</strong>
+                        <div class="price-change down"><i class="fas fa-caret-down"></i> 1.2%</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Voice Interface Section -->
-            <div class="voice-section">
-                <button class="mic-btn" id="mic-trigger"><i class="fas fa-microphone"></i></button>
-                <p style="margin-bottom: 10px; font-weight: 600;">Speak in your language</p>
-                <div class="transcription-box" id="transcription">
-                    "नमस्ते, मुझे आज गेहूं का भाव बताइए..."
+            <div class="ai-action-box">
+                <h3>Ask Mandi AI</h3>
+                <p>Speak in any Indian language for prices or translation</p>
+                <button class="mic-trigger" id="mic-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <div id="speech-status">LISTENING...</div>
+                <div class="live-transcription" id="transcription">
+                    "नमस्ते, आज गेहूं का क्या भाव है?"
                 </div>
             </div>
 
-            <!-- Negotiation Preview -->
-            <div class="card" style="margin-top: 30px;">
-                <h3><i class="fas fa-handshake"></i> Live Negotiation Support</h3>
-                <div class="negotiation-chat">
-                    <div class="bubble seller">
-                        Namaste! Hamara mal sabse accha hai, ₹2500 kam se kam.
-                        <span class="translation-tag">EN: Namaste! Our produce is the best, ₹2500 minimum.</span>
+            <div class="negotiation-section">
+                <h3><i class="fas fa-handshake"></i> Live Trade Mediation</h3>
+                <div class="chat-container">
+                    <div class="chat-bubble vendor">
+                        Apanakara dhana ra gunabatta bhala achi, mu quintal pichha 2500 tanka chahinbi.
+                        <span class="translation-tag">(Odia)</span>
+                        <div class="translation-overlay">
+                            Your paddy quality is good, I want 2500 rupees per quintal.
+                        </div>
                     </div>
-                    <div class="bubble buyer">
-                        Too expensive! I can offer ₹2200 for bulk.
-                        <span class="translation-tag">HI: बहुत महंगा है! मैं थोक के लिए ₹2200 दे सकता हूँ।</span>
+                    <div class="chat-bubble buyer">
+                        ₹2500 is too high for this batch. I can do ₹2300 today.
+                        <span class="translation-tag">(English)</span>
+                        <div class="translation-overlay">
+                            ₹2500 बहुत ज्यादा है। मैं आज ₹2300 दे सकता हूँ।
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <div class="footer-note">
-            Powered by Kiro AI Agents • Visions of Bharat 2026
-        </div>
+        <nav class="bottom-nav">
+            <div class="nav-item active"><i class="fas fa-home"></i>HOME</div>
+            <div class="nav-item"><i class="fas fa-chart-bar"></i>MARKETS</div>
+            <div class="nav-item"><i class="fas fa-exchange-alt"></i>TRADE</div>
+            <div class="nav-item"><i class="fas fa-user-circle"></i>PROFILE</div>
+        </nav>
     </div>
 
     <script>
-        const mic = document.getElementById('mic-trigger');
+        const micBtn = document.getElementById('mic-btn');
+        const status = document.getElementById('speech-status');
         const transcription = document.getElementById('transcription');
-        let isRecording = false;
+        let active = false;
 
-        mic.addEventListener('click', () => {
-            isRecording = !isRecording;
-            if (isRecording) {
-                mic.classList.add('recording');
-                transcription.innerText = "Listening to your request...";
+        micBtn.addEventListener('click', () => {
+            active = !active;
+            if (active) {
+                micBtn.classList.add('active');
+                status.style.display = 'block';
+                transcription.style.display = 'block';
+                transcription.innerText = "Listening to your language...";
+                
+                // Simulate AI recognition logic
                 setTimeout(() => {
-                    if(isRecording) {
-                        transcription.innerText = "Processing your Hindi query...";
-                    }
+                    if (active) transcription.innerText = "Recognized: Hindi (हिंदी)";
                 }, 1500);
+                setTimeout(() => {
+                    if (active) transcription.innerText = "Processing: 'आज गेहूं का क्या भाव है?'";
+                }, 3000);
             } else {
-                mic.classList.remove('recording');
-                transcription.innerText = "आज का गेहूं का सबसे अच्छा भाव ₹2450 है। (Today's best wheat price is ₹2450)";
+                micBtn.classList.remove('active');
+                status.style.display = 'none';
+                transcription.innerText = "Today's Wheat price in Azadpur is ₹2,450. (आज गेहूं का भाव ₹2,450 है)";
             }
         });
+
+        // Real-time ticker simulation: slightly vary prices
+        setInterval(() => {
+            const prices = document.querySelectorAll('.price-card strong');
+            prices.forEach(p => {
+                const val = parseInt(p.innerText.replace('₹', '').replace(',', ''));
+                const change = Math.floor(Math.random() * 10) - 5;
+                p.innerText = '₹' + (val + change).toLocaleString();
+            });
+        }, 5000);
     </script>
 </body>
 </html>
