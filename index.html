@@ -38,7 +38,6 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
         }
 
-        /* --- Header & Branding --- */
         header {
             background: white;
             padding: 20px;
@@ -49,218 +48,48 @@
             z-index: 100;
         }
 
-        .logo { 
-            font-weight: 800; 
-            font-size: 20px; 
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
+        .logo { font-weight: 800; font-size: 20px; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 10px; }
         .logo i { color: var(--primary); }
 
-        /* --- Price Ticker --- */
-        .ticker-container {
-            background: var(--primary);
-            color: white;
-            padding: 8px 0;
-            overflow: hidden;
-        }
+        .ticker-container { background: var(--primary); color: white; padding: 8px 0; overflow: hidden; }
+        .ticker-content { display: inline-block; white-space: nowrap; animation: ticker-scroll 30s linear infinite; font-size: 14px; font-weight: 600; }
+        @keyframes ticker-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        .ticker-content {
-            display: inline-block;
-            white-space: nowrap;
-            animation: ticker-scroll 30s linear infinite;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        @keyframes ticker-scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- Main Dashboard --- */
         main { padding: 20px; padding-bottom: 100px; }
 
-        .market-status {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #e5e7eb;
-        }
+        .tab-content { display: none; animation: fadeIn 0.3s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .market-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
+        .market-status { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #e5e7eb; }
+        .market-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
         .market-title h2 { font-size: 18px; margin-bottom: 4px; }
-        .market-title p { font-size: 14px; color: var(--text-sub); }
+        .location-badge { background: #eff6ff; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 
-        .location-badge {
-            background: #eff6ff;
-            color: #1d4ed8;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .price-card {
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #f1f5f9;
-        }
-
+        .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .price-card { background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px solid #f1f5f9; }
         .price-card span { display: block; font-size: 12px; color: var(--text-sub); }
         .price-card strong { font-size: 16px; color: var(--text-main); }
         .price-change.up { color: var(--secondary); font-size: 11px; }
 
-        /* --- AI Interaction --- */
-        .ai-action-box {
-            background: linear-gradient(135deg, #FF9933 0%, #FFB366 100%);
-            border-radius: 24px;
-            padding: 25px;
-            color: white;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(255, 153, 51, 0.3);
-        }
+        .ai-action-box { background: linear-gradient(135deg, #FF9933 0%, #FFB366 100%); border-radius: 24px; padding: 25px; color: white; text-align: center; margin-bottom: 20px; }
+        .mic-trigger { width: 70px; height: 70px; background: white; border-radius: 50%; border: none; color: var(--primary); font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        .mic-trigger.active { background: var(--secondary); color: white; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(18, 136, 7, 0); } 100% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0); } }
 
-        .ai-action-box h3 { font-size: 20px; margin-bottom: 8px; }
-        .ai-action-box p { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+        .chat-container { display: flex; flex-direction: column; gap: 15px; }
+        .chat-bubble { max-width: 85%; padding: 14px; border-radius: 18px; position: relative; }
+        .chat-bubble.vendor { background: white; align-self: flex-start; border: 1px solid #e5e7eb; }
+        .chat-bubble.buyer { background: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .translation-overlay { display: block; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.05); font-size: 12px; font-style: italic; opacity: 0.8; }
 
-        .mic-trigger {
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 50%;
-            border: none;
-            color: var(--primary);
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-        }
-
-        .mic-trigger.active {
-            background: var(--secondary);
-            color: white;
-            transform: scale(1.1);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(18, 136, 7, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(18, 136, 7, 0); }
-        }
-
-        .live-transcription {
-            background: rgba(255,255,255,0.2);
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 15px;
-            font-size: 14px;
-            min-height: 40px;
-            display: none;
-        }
-
-        /* --- Real-Time Chat --- */
-        .negotiation-section h3 { font-size: 16px; margin-bottom: 12px; padding-left: 5px; }
-
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .chat-bubble {
-            max-width: 85%;
-            padding: 14px;
-            border-radius: 18px;
-            position: relative;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .chat-bubble.vendor {
-            background: white;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .chat-bubble.buyer {
-            background: var(--secondary);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-
-        .translation-overlay {
-            display: block;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            font-size: 12px;
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        .buyer .translation-overlay { border-top-color: rgba(255,255,255,0.2); }
-
-        /* --- Footer Navigation --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 450px;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid #e5e7eb;
-            z-index: 100;
-        }
-
-        .nav-item {
-            text-align: center;
-            color: var(--text-sub);
-            font-size: 10px;
-            font-weight: 600;
-            flex: 1;
-        }
-
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 450px; background: white; display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid #e5e7eb; }
+        .nav-item { text-align: center; color: var(--text-sub); font-size: 10px; font-weight: 600; flex: 1; cursor: pointer; }
         .nav-item i { display: block; font-size: 20px; margin-bottom: 4px; }
         .nav-item.active { color: var(--primary); }
 
-        /* --- Functional Controls --- */
-        #speech-status {
-            font-size: 12px;
-            margin-top: 8px;
-            font-weight: 600;
-            display: none;
-        }
-
+        .lang-selector { margin-bottom: 15px; padding: 8px; border-radius: 8px; width: 100%; border: 1px solid #ddd; font-family: inherit; }
+        #transcription-status { font-weight: bold; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
@@ -270,112 +99,143 @@
         </header>
 
         <div class="ticker-container">
-            <div class="ticker-content">
-                🌾 WHEAT: ₹2450 (+20) | 🍅 TOMATO: ₹1800 (-50) | 🧅 ONION: ₹2100 (+10) | 🥔 POTATO: ₹1250 (+5) | 🥛 MILK: ₹54 (0) | 🌽 MAIZE: ₹1950 (+15)
+            <div class="ticker-content" id="live-ticker">
+                🌾 WHEAT: ₹2450 | 🍅 TOMATO: ₹1800 | 🧅 ONION: ₹2100 | 🥔 POTATO: ₹1250 | 🌽 MAIZE: ₹1950
             </div>
         </div>
 
         <main>
-            <div class="market-status">
-                <div class="market-header">
-                    <div class="market-title">
-                        <h2>Azadpur Mandi</h2>
-                        <p>Latest Market Rates</p>
+            <!-- TAB: PRICES -->
+            <div id="tab-prices" class="tab-content active">
+                <div class="market-status">
+                    <div class="market-header">
+                        <div class="market-title">
+                            <h2 id="market-name">Azadpur Mandi</h2>
+                            <p>Live Price Discovery</p>
+                        </div>
+                        <span class="location-badge"><i class="fas fa-location-arrow"></i> NEW DELHI</span>
                     </div>
-                    <span class="location-badge"><i class="fas fa-location-arrow"></i> New Delhi</span>
+                    <div class="price-grid" id="price-grid">
+                        <!-- Prices loaded dynamically -->
+                    </div>
                 </div>
-                <div class="price-grid">
-                    <div class="price-card">
-                        <span>Wheat (A-Grade)</span>
-                        <strong>₹2,450</strong>
-                        <div class="price-change up"><i class="fas fa-caret-up"></i> 0.8%</div>
-                    </div>
-                    <div class="price-card">
-                        <span>Basmati Rice</span>
-                        <strong>₹4,200</strong>
-                        <div class="price-change down"><i class="fas fa-caret-down"></i> 1.2%</div>
-                    </div>
+
+                <div class="ai-action-box">
+                    <h3>Voice Assistant</h3>
+                    <p>Ask in your language for any price</p>
+                    <button class="mic-trigger" id="mic-btn"><i class="fas fa-microphone"></i></button>
+                    <div id="transcription-status">LISTENING...</div>
+                    <div id="live-result" style="margin-top: 15px; font-style: italic; font-size: 14px;"></div>
                 </div>
             </div>
 
-            <div class="ai-action-box">
-                <h3>Ask Mandi AI</h3>
-                <p>Speak in any Indian language for prices or translation</p>
-                <button class="mic-trigger" id="mic-btn">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <div id="speech-status">LISTENING...</div>
-                <div class="live-transcription" id="transcription">
-                    "नमस्ते, आज गेहूं का क्या भाव है?"
+            <!-- TAB: TRADE -->
+            <div id="tab-trade" class="tab-content">
+                <div class="card" style="padding: 15px; border-radius: 20px; background: white; margin-bottom: 20px;">
+                    <h3>Live Translation</h3>
+                    <p style="font-size: 12px; color: var(--text-sub); margin-bottom: 10px;">Select target language for your trade partner:</p>
+                    <select id="target-lang" class="lang-selector">
+                        <option value="hi">Hindi (हिंदी)</option>
+                        <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                        <option value="bn">Bengali (বাংলা)</option>
+                        <option value="te">Telugu (తెలుగు)</option>
+                        <option value="mr">Marathi (मराठी)</option>
+                    </select>
+                    <textarea id="trade-msg" placeholder="Type your offer in English..." style="width: 100%; height: 80px; padding: 10px; border-radius: 12px; border: 1px solid #ddd; margin-bottom: 10px; font-family: inherit;"></textarea>
+                    <button id="btn-translate" style="width: 100%; padding: 12px; border-radius: 12px; background: var(--secondary); color: white; border: none; font-weight: 700; cursor: pointer;">TRANSLATE & SEND</button>
                 </div>
-            </div>
 
-            <div class="negotiation-section">
-                <h3><i class="fas fa-handshake"></i> Live Trade Mediation</h3>
-                <div class="chat-container">
-                    <div class="chat-bubble vendor">
-                        Apanakara dhana ra gunabatta bhala achi, mu quintal pichha 2500 tanka chahinbi.
-                        <span class="translation-tag">(Odia)</span>
-                        <div class="translation-overlay">
-                            Your paddy quality is good, I want 2500 rupees per quintal.
-                        </div>
-                    </div>
-                    <div class="chat-bubble buyer">
-                        ₹2500 is too high for this batch. I can do ₹2300 today.
-                        <span class="translation-tag">(English)</span>
-                        <div class="translation-overlay">
-                            ₹2500 बहुत ज्यादा है। मैं आज ₹2300 दे सकता हूँ।
-                        </div>
-                    </div>
+                <div class="chat-container" id="chat-history">
+                    <!-- Chat bubbles appear here -->
                 </div>
             </div>
         </main>
 
         <nav class="bottom-nav">
-            <div class="nav-item active"><i class="fas fa-home"></i>HOME</div>
-            <div class="nav-item"><i class="fas fa-chart-bar"></i>MARKETS</div>
-            <div class="nav-item"><i class="fas fa-exchange-alt"></i>TRADE</div>
+            <div class="nav-item active" onclick="switchTab('prices')"><i class="fas fa-home"></i>HOME</div>
+            <div class="nav-item" onclick="switchTab('trade')"><i class="fas fa-exchange-alt"></i>TRADE</div>
             <div class="nav-item"><i class="fas fa-user-circle"></i>PROFILE</div>
         </nav>
     </div>
 
     <script>
-        const micBtn = document.getElementById('mic-btn');
-        const status = document.getElementById('speech-status');
-        const transcription = document.getElementById('transcription');
-        let active = false;
+        const API_BASE = 'http://localhost:5001/api';
 
-        micBtn.addEventListener('click', () => {
-            active = !active;
-            if (active) {
-                micBtn.classList.add('active');
-                status.style.display = 'block';
-                transcription.style.display = 'block';
-                transcription.innerText = "Listening to your language...";
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- Fetch Real Prices ---
+        async function loadPrices() {
+            try {
+                const res = await fetch(`${API_BASE}/prices`);
+                const data = await res.json();
+                const grid = document.getElementById('price-grid');
+                grid.innerHTML = '';
+                data.forEach(p => {
+                    grid.innerHTML += `
+                        <div class="price-card">
+                            <span>${p.item}</span>
+                            <strong>₹${p.price.toLocaleString()}</strong>
+                            <div class="price-change up"><i class="fas fa-caret-up"></i> ${p.change}</div>
+                        </div>
+                    `;
+                });
+            } catch (e) { console.error("Price load failed"); }
+        }
+
+        // --- Live Translation ---
+        document.getElementById('btn-translate').addEventListener('click', async () => {
+            const text = document.getElementById('trade-msg').value;
+            const lang = document.getElementById('target-lang').value;
+            const chat = document.getElementById('chat-history');
+
+            if(!text) return;
+
+            // Add buyer message
+            chat.innerHTML += `<div class="chat-bubble buyer">${text}</div>`;
+            document.getElementById('trade-msg').value = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/translate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, targetLang: lang })
+                });
+                const data = await res.json();
                 
-                // Simulate AI recognition logic
-                setTimeout(() => {
-                    if (active) transcription.innerText = "Recognized: Hindi (हिंदी)";
-                }, 1500);
-                setTimeout(() => {
-                    if (active) transcription.innerText = "Processing: 'आज गेहूं का क्या भाव है?'";
-                }, 3000);
+                // Add translated vendor reply
+                chat.innerHTML += `
+                    <div class="chat-bubble vendor">
+                        ${data.translatedText}
+                        <div class="translation-overlay">(Translated to ${lang.toUpperCase()})</div>
+                    </div>
+                `;
+                chat.scrollTop = chat.scrollHeight;
+            } catch (e) { alert("Translation API offline"); }
+        });
+
+        // --- Voice Simulation ---
+        const micBtn = document.getElementById('mic-btn');
+        micBtn.addEventListener('click', () => {
+            micBtn.classList.toggle('active');
+            const status = document.getElementById('transcription-status');
+            const result = document.getElementById('live-result');
+            
+            if(micBtn.classList.contains('active')) {
+                status.style.display = 'block';
+                result.innerText = "Listening for your query...";
+                setTimeout(() => { result.innerText = "Recognized: 'What is the price of Wheat?'"; }, 2000);
             } else {
-                micBtn.classList.remove('active');
                 status.style.display = 'none';
-                transcription.innerText = "Today's Wheat price in Azadpur is ₹2,450. (आज गेहूं का भाव ₹2,450 है)";
+                result.innerText = "Current Wheat price in Azadpur is ₹2,450 per Quintal.";
             }
         });
 
-        // Real-time ticker simulation: slightly vary prices
-        setInterval(() => {
-            const prices = document.querySelectorAll('.price-card strong');
-            prices.forEach(p => {
-                const val = parseInt(p.innerText.replace('₹', '').replace(',', ''));
-                const change = Math.floor(Math.random() * 10) - 5;
-                p.innerText = '₹' + (val + change).toLocaleString();
-            });
-        }, 5000);
+        loadPrices();
     </script>
 </body>
 </html>
